@@ -16,6 +16,12 @@ impl<'a> Finder<'a> {
         }
     }
 
+    pub fn from_path<P:'a + AsRef<Path>>(path: &'a P) -> Self {
+        Finder {
+            filename: path.as_ref().clone(),
+        }
+    }
+
     pub fn filename(mut self, filename: &'a Path) -> Self {
         self.filename = filename;
         self

@@ -164,6 +164,46 @@ pub fn dotenv() -> Result<PathBuf> {
     Ok(path)
 }
 
+/// Similar to dotenv, but implements the dotenv-flow strategy by loading multiple `.env`s following
+/// the order determined by their suffixes.
+///
+/// The strategy is as follows:
+/// - load .env.local
+/// - if a DOTENV_ENV environment variable is set, load .env.{DOTENV_ENV}.local (e.g. .env.staging.local)
+/// - if a DOTENV_ENV environment variable is set, load .env.{DOTENV_ENV} (e.g. .env.staging)
+/// - load .env
+///
+/// # Examples
+/// ```
+/// use dotenv;
+/// dotenv::dotenv_flow().ok();
+/// ```
+pub fn dotenv_flow() -> Result<Vec<PathBuf>> {
+    let preferred_environment = env::var("DOTENV_ENV").ok();
+
+    let candidate_filenames = match preferred_environment {
+        None => vec![PathBuf::from(".env.local"), PathBuf::from(".env")],
+        Some(ref env_name) => vec![
+            PathBuf::from(".env.local"),
+            PathBuf::from(format!(".env.{}.local", env_name)),
+            PathBuf::from(format!(".env.{}", env_name)),
+            PathBuf::from(".env"),
+        ],
+    };
+    let mut path_bufs = vec![];
+    for env_filename in candidate_filenames {
+        match Finder::from_path(&env_filename).find() {
+            Ok((path, iter)) => {
+                iter.load()?;
+                path_bufs.push(path);
+            }
+            _ => (),
+        }
+    }
+
+    Ok(path_bufs)
+}
+
 /// Like `dotenv`, but returns an iterator over variables instead of loading into environment.
 ///
 /// # Examples
