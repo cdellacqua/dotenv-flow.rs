@@ -1,5 +1,5 @@
 [package]
-name = "dotenv"
+name = "dotenv-flow"
 version = "0.15.0"
 authors = [
   "Noemi Lapresta <noemi.lapresta@gmail.com>",
@@ -9,13 +9,14 @@ authors = [
   "Sean Griffin <sean@seantheprogrammer.com>",
   "Adam Sharp <adam@sharplet.me>",
   "Arpad Borsos <arpad.borsos@googlemail.com>",
+  "Carlo Dell'Acqua <carlo.dellacqua97@gmail.com>",
 ]
-description = "A `dotenv` implementation for Rust"
-homepage = "https://github.com/dotenv-rs/dotenv"
+description = "A `dotenv-flow` implementation for Rust"
+homepage = "https://github.com/cdellacqua/dotenv-flow.rs"
 readme = "../README.md"
-keywords = ["environment", "env", "dotenv", "settings", "config"]
+keywords = ["environment", "env", "dotenv", "dotenv-flow", "settings", "config"]
 license = "MIT"
-repository = "https://github.com/dotenv-rs/dotenv"
+repository = "https://github.com/cdellacqua/dotenv-flow.rs"
 edition = "2018"
 
 [[bin]]

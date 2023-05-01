@@ -2,7 +2,7 @@ mod common;
 
 use std::env;
 
-use dotenv::*;
+use dotenv_flow::*;
 
 use crate::common::*;
 

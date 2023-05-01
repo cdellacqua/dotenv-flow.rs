@@ -31,10 +31,10 @@ static START: Once = Once::new();
 ///
 /// ```no_run
 ///
-/// use dotenv;
+/// use dotenv_flow;
 ///
 /// let key = "FOO";
-/// let value= dotenv::var(key).unwrap();
+/// let value= dotenv_flow::var(key).unwrap();
 /// ```
 pub fn var<K: AsRef<OsStr>>(key: K) -> Result<String> {
     START.call_once(|| {
@@ -54,10 +54,10 @@ pub fn var<K: AsRef<OsStr>>(key: K) -> Result<String> {
 ///
 /// ```no_run
 ///
-/// use dotenv;
+/// use dotenv_flow;
 /// use std::io;
 ///
-/// let result: Vec<(String, String)> = dotenv::vars().collect();
+/// let result: Vec<(String, String)> = dotenv_flow::vars().collect();
 /// ```
 pub fn vars() -> Vars {
     START.call_once(|| {
@@ -71,12 +71,12 @@ pub fn vars() -> Vars {
 /// Examples
 ///
 /// ```
-/// use dotenv;
+/// use dotenv_flow;
 /// use std::env;
 /// use std::path::{Path};
 ///
 /// let my_path = env::home_dir().and_then(|a| Some(a.join("/.env"))).unwrap();
-/// dotenv::from_path(my_path.as_path());
+/// dotenv_flow::from_path(my_path.as_path());
 /// ```
 pub fn from_path<P: AsRef<Path>>(path: P) -> Result<()> {
     let iter = Iter::new(File::open(path).map_err(Error::Io)?);
@@ -88,12 +88,12 @@ pub fn from_path<P: AsRef<Path>>(path: P) -> Result<()> {
 /// Examples
 ///
 /// ```no_run
-/// use dotenv;
+/// use dotenv_flow;
 /// use std::env;
 /// use std::path::{Path};
 ///
 /// let my_path = env::home_dir().and_then(|a| Some(a.join("/.env"))).unwrap();
-/// let iter = dotenv::from_path_iter(my_path.as_path()).unwrap();
+/// let iter = dotenv_flow::from_path_iter(my_path.as_path()).unwrap();
 ///
 /// for item in iter {
 ///   let (key, val) = item.unwrap();
@@ -108,16 +108,16 @@ pub fn from_path_iter<P: AsRef<Path>>(path: P) -> Result<Iter<File>> {
 ///
 /// # Examples
 /// ```
-/// use dotenv;
-/// dotenv::from_filename("custom.env").ok();
+/// use dotenv_flow;
+/// dotenv_flow::from_filename("custom.env").ok();
 /// ```
 ///
-/// It is also possible to do the following, but it is equivalent to using `dotenv::dotenv()`,
+/// It is also possible to do the following, but it is equivalent to using `dotenv_flow::dotenv()`,
 /// which is preferred.
 ///
 /// ```
-/// use dotenv;
-/// dotenv::from_filename(".env").ok();
+/// use dotenv_flow;
+/// dotenv_flow::from_filename(".env").ok();
 /// ```
 pub fn from_filename<P: AsRef<Path>>(filename: P) -> Result<PathBuf> {
     let (path, iter) = Finder::new().filename(filename.as_ref()).find()?;
@@ -129,16 +129,16 @@ pub fn from_filename<P: AsRef<Path>>(filename: P) -> Result<PathBuf> {
 ///
 /// # Examples
 /// ```
-/// use dotenv;
-/// dotenv::from_filename("custom.env").ok();
+/// use dotenv_flow;
+/// dotenv_flow::from_filename("custom.env").ok();
 /// ```
 ///
-/// It is also possible to do the following, but it is equivalent to using `dotenv::dotenv()`,
+/// It is also possible to do the following, but it is equivalent to using `dotenv_flow::dotenv()`,
 /// which is preferred.
 ///
 /// ```no_run
-/// use dotenv;
-/// let iter = dotenv::from_filename_iter(".env").unwrap();
+/// use dotenv_flow;
+/// let iter = dotenv_flow::from_filename_iter(".env").unwrap();
 ///
 /// for item in iter {
 ///   let (key, val) = item.unwrap();
@@ -155,8 +155,8 @@ pub fn from_filename_iter<P: AsRef<Path>>(filename: P) -> Result<Iter<File>> {
 ///
 /// # Examples
 /// ```
-/// use dotenv;
-/// dotenv::dotenv().ok();
+/// use dotenv_flow;
+/// dotenv_flow::dotenv().ok();
 /// ```
 pub fn dotenv() -> Result<PathBuf> {
     let (path, iter) = Finder::new().find()?;
@@ -175,8 +175,8 @@ pub fn dotenv() -> Result<PathBuf> {
 ///
 /// # Examples
 /// ```
-/// use dotenv;
-/// dotenv::dotenv_flow().ok();
+/// use dotenv_flow;
+/// dotenv_flow::dotenv_flow().ok();
 /// ```
 pub fn dotenv_flow() -> Result<Vec<PathBuf>> {
     let preferred_environment = env::var("DOTENV_ENV").ok();
@@ -208,9 +208,9 @@ pub fn dotenv_flow() -> Result<Vec<PathBuf>> {
 ///
 /// # Examples
 /// ```no_run
-/// use dotenv;
+/// use dotenv_flow;
 ///
-/// for item in dotenv::dotenv_iter().unwrap() {
+/// for item in dotenv_flow::dotenv_iter().unwrap() {
 ///   let (key, val) = item.unwrap();
 ///   println!("{}={}", key, val);
 /// }

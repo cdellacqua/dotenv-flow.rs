@@ -43,8 +43,8 @@ fn main() {
         .get_matches();
 
     match matches.value_of("FILE") {
-        None => dotenv::dotenv(),
-        Some(file) => dotenv::from_filename(file),
+        None => dotenv_flow::dotenv(),
+        Some(file) => dotenv_flow::from_filename(file),
     }
     .unwrap_or_else(|e| die!("error: failed to load environment: {}", e));
 

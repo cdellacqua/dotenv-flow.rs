@@ -1,3 +1,6 @@
+[![Crates.io](./badges/crates.io.svg)](https://crates.io/crates/dotenv-flow)
+
+
 # dotenv-flow.rs
 
 A fork of [dotenv-rs](https://github.com/dotenv-rs/dotenv) that adds support for the popular dotenv-flow
@@ -18,12 +21,8 @@ in the .env.local file will have the highest priority, followed .env.{DOTENV_ENV
 
 ### Installation
 
-As a humble fork, this library is not on crates.io, but will hopefully be merged into the original dotenv package.
-
-In the meantime, you can add this fork to your project by specifying the repository URL:
-
 ```sh
-cargo add dotenv --git https://github.com/cdellacqua/dotenv-flow.rs.git
+cargo add dotenv-flow
 ```
 
 ### Usage
@@ -32,7 +31,7 @@ To use this package, add the following line to your main function to load the en
 
 ```rs
 fn main() {
-  dotenv::dotenv_flow().ok();
+  dotenv_flow::dotenv_flow().ok();
 }
 ```
 
