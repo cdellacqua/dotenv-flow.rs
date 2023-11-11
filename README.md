@@ -9,13 +9,17 @@ loading strategy.
 
 The dotenv-flow strategy works as follows:
 
-- load .env.local
 - if a DOTENV_ENV environment variable is set, load .env.{DOTENV_ENV}.local (e.g. .env.staging.local)
+- load .env.local
 - if a DOTENV_ENV environment variable is set, load .env.{DOTENV_ENV} (e.g. .env.staging)
 - load .env
 
 Each step will only load variables that are not already present in the environment, so for example variables
-in the .env.local file will have the highest priority, followed .env.{DOTENV_ENV}.local and so on.
+in the .env.{DOTENV_ENV}.local file will have the highest priority, followed .env.local and so on.
+
+### Breaking in 0.16.0
+
+- env.{DOTENV_ENV}.local is now loaded before .env.local
 
 ## HowTo
 

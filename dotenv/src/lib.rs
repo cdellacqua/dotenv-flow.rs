@@ -168,8 +168,8 @@ pub fn dotenv() -> Result<PathBuf> {
 /// the order determined by their suffixes.
 ///
 /// The strategy is as follows:
-/// - load .env.local
 /// - if a DOTENV_ENV environment variable is set, load .env.{DOTENV_ENV}.local (e.g. .env.staging.local)
+/// - load .env.local
 /// - if a DOTENV_ENV environment variable is set, load .env.{DOTENV_ENV} (e.g. .env.staging)
 /// - load .env
 ///
@@ -184,8 +184,8 @@ pub fn dotenv_flow() -> Result<Vec<PathBuf>> {
     let candidate_filenames = match preferred_environment {
         None => vec![PathBuf::from(".env.local"), PathBuf::from(".env")],
         Some(ref env_name) => vec![
-            PathBuf::from(".env.local"),
             PathBuf::from(format!(".env.{}.local", env_name)),
+            PathBuf::from(".env.local"),
             PathBuf::from(format!(".env.{}", env_name)),
             PathBuf::from(".env"),
         ],

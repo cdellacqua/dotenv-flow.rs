@@ -30,8 +30,8 @@ pub fn tempdir_with_dotenv(dotenv_text: &str) -> io::Result<TempDir> {
 }
 
 pub fn tempdir_with_dotenv_flow(
-    dotenv_local_text: Option<&str>,
     dotenv_env_local_text: Option<&str>,
+    dotenv_local_text: Option<&str>,
     dotenv_env_text: Option<&str>,
     dotenv_text: Option<&str>,
 ) -> io::Result<TempDir> {

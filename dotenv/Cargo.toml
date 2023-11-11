@@ -1,6 +1,6 @@
 [package]
 name = "dotenv-flow"
-version = "0.15.0"
+version = "0.16.0"
 authors = [
   "Noemi Lapresta <noemi.lapresta@gmail.com>",
   "Craig Hills <chills@gmail.com>",

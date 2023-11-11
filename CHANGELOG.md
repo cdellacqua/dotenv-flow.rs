@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.16.0-flow] - 2023-11-11
+- (breaking) Load env.{DOTENV_ENV}.local before .env.local
+
 ## [0.15.0] - 2019-10-21
 
 ### Changed
