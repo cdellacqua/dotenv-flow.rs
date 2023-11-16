@@ -1,4 +1,4 @@
-[![Crates.io](./dotenv/badges/crates.io.svg)](https://crates.io/crates/dotenv-flow)
+[![Crates.io](./badges/crates.io.svg)](https://crates.io/crates/dotenv-flow)
 
 
 # dotenv-flow.rs
